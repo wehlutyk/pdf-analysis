@@ -1,0 +1,11 @@
+# Grobid stuff
+grobid.log
+
+# IPython
+.ipynb_checkpoints/
+
+# Processing
+original_pdfs/
+pdfs/
+text/
+tei/
