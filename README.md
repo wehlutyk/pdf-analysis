@@ -4,7 +4,7 @@
 
 **Grobid**
 
-You need mavin for this: `sudo apt-get install maven`. Then:
+You need maven for this: `sudo apt-get install maven`. Then:
 
 ```shell
 git clone https://github.com/kermitt2/grobid.git
