@@ -3,6 +3,17 @@
 # Show errors
 set -e
 
+process () {
+    arg=$1
+    spaces=${arg// /_}
+    ticks1=${spaces//’/_}
+    ticks2=${ticks1//‘/_}
+    quotes=${ticks2//"'"/_}
+    paren1=${quotes//"("/_}
+    paren2=${paren1//")"/_}
+    echo $paren2
+}
+
 # We want two arguments
 if [ $# != 2 ]
 then
@@ -10,7 +21,7 @@ then
     exit 1
 fi
 folder=$1
-outfolder=${2// /_}
+outfolder=$(process "$2")
 echo "###"
 echo "### Processing filenames (removing spaces)"
 echo "###"
@@ -33,12 +44,12 @@ IFS=$(echo -en "\n\b")
 for d in $(ls -1 "$folder")
 do
     echo "Processing articles in '$d'"
-    outsubfolder=$outfolder/${d// /_}
+    outsubfolder=$outfolder/$(process "$d")
     mkdir -p "$outsubfolder"
     for f in $(ls -1 "$folder/$d")
     do
         echo "Processing article '$f' (in folder '$d')"
-        cp "$folder/$d/$f" "$outsubfolder/${f// /_}"
+        cp "$folder/$d/$f" $outsubfolder/$(process "$f")
     done
 done
 
